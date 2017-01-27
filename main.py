@@ -43,10 +43,10 @@ class Index(webapp2.RequestHandler):
             <label>
                 I want to cross off
                 <select name="cross_off_movie">
-                    <option value="Harry Potter"></option>
-                    <option value="Harry and The Hendersons"></option>
-                    <option value="Dirty Harry"></option>
-                    <option value="Dirty Harry 2"></option>
+                    <option value="Harry Potter">Harry Potter</option>
+                    <option value="Harry and The Hendersons">Harry and The Hendersons</option>
+                    <option value="Dirty Harry">Dirty Harry</option>
+                    <option value="Dirty Harry 2">Dirty Harry 2</option>
                 </select>
             </label>
             <input type="submit" value="Cross It Off"/>
