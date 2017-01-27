@@ -38,7 +38,34 @@ class Index(webapp2.RequestHandler):
             <input type="submit" value="Add It"/>
         </form>
         """
+        cross_form = """
+        <form action="/cross" method="post">
+            <label>
+                I want to cross off
+                <select name="cross_off_movie">
+                    <option value="Harry Potter"></option>
+                    <option value="Harry and The Hendersons"></option>
+                    <option value="Dirty Harry"></option>
+                    <option value="Dirty Harry 2"></option>
+                </select>
+            </label>
+            <input type="submit" value="Cross It Off"/>
+        </form>
+        """
 
+        content = page_header + edit_header + add_form + cross_form + page_footer
+        self.response.write(content)
+
+class CrossOffMovie(webapp2.RequestHandler):
+    def post(self):
+
+        crossoff_movie = self.request.get("cross_off_movie")
+
+        cross_off_element = "<strike>" + crossoff_movie + "</strike>"
+        sentence = cross_off_element + " has been crossed off your Watchlist."
+
+        content = page_header + "<p>" + sentence + "</p>" + page_footer
+        self.response.write(content)
         # TODO 1
         # Include another form so the user can "cross off" a movie from their list.
 
@@ -47,9 +74,6 @@ class Index(webapp2.RequestHandler):
         # modify your form to use a dropdown (<select>) instead a
         # text box (<input type="text"/>)
 
-
-        content = page_header + edit_header + add_form + page_footer
-        self.response.write(content)
 
 
 class AddMovie(webapp2.RequestHandler):
@@ -80,5 +104,6 @@ class AddMovie(webapp2.RequestHandler):
 # Include a route for your cross-off handler, by adding another tuple to the list below.
 app = webapp2.WSGIApplication([
     ('/', Index),
-    ('/add', AddMovie)
+    ('/add', AddMovie),
+    ('/cross', CrossOffMovie)
 ], debug=True)
